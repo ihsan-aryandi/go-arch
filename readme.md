@@ -20,6 +20,6 @@ Todo :
 3. Query Builder
     - Koneksi DB (Postgresql)
 4. Log
-    -struktur log
-    -output log
-    -configuration log
+    - Struktur log
+    - Output log
+    - Configuration log
