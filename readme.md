@@ -19,3 +19,7 @@ Todo :
     - Buat validasi
 3. Query Builder
     - Koneksi DB (Postgresql)
+4. Log
+    -struktur log
+    -output log
+    -configuration log
