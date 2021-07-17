@@ -2,11 +2,14 @@ package route
 
 import (
 	"github.com/gorilla/mux"
-	"net/http"
+	"gofw/controller"
+)
+
+var (
+	userController = controller.NewUserController()
 )
 
 func RegisterUserRoutes(r *mux.Router) {
-	r.HandleFunc("/user", func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write([]byte("User Page"))
-	}).Methods("GET")
+	r.HandleFunc("/user", userController.FindAllUsers).Methods("GET")
+	r.HandleFunc("/user/{id}", userController.FindUserById).Methods("GET")
 }
