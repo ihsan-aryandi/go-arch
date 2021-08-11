@@ -9,7 +9,7 @@ var (
 	userController = controller.NewUserController()
 )
 
-func RegisterUserRoutes(r *mux.Router) {
+func SetupUser(r *mux.Router) {
 	r.HandleFunc("/user", userController.FindAllUsers).Methods("GET")
 	r.HandleFunc("/user/{id}", userController.FindUserById).Methods("GET")
 }

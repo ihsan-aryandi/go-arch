@@ -8,6 +8,7 @@ import (
 
 type MuxRouters interface {
 	Listen(port string) error
+	SetupRoutes()
 }
 
 type muxRouter struct {
@@ -15,10 +16,7 @@ type muxRouter struct {
 }
 
 func NewMuxRouter() MuxRouters {
-	r := mux.NewRouter()
-	RegisterRoutes(r)
-
-	return &muxRouter{MuxRouter: r}
+	return &muxRouter{MuxRouter: mux.NewRouter()}
 }
 
 func (r *muxRouter) Listen(port string) error {
@@ -27,4 +25,8 @@ func (r *muxRouter) Listen(port string) error {
 	fmt.Println(fmt.Sprintf("Server started on port %v", port))
 
 	return http.ListenAndServe(port, r.MuxRouter)
+}
+
+func (r *muxRouter) SetupRoutes() {
+	SetupRoutes(r.MuxRouter)
 }

@@ -34,7 +34,7 @@ func StartApplication() {
 	/*
 		Connect to main DB
 	*/
-	warehouse.DB, err = connectDB()
+	warehouse.Conn.DB, err = connectDB()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,6 +42,7 @@ func StartApplication() {
 	/*
 		Starts Router
 	*/
+	muxRouter.SetupRoutes()
 	log.Fatal(muxRouter.Listen(os.Getenv("PORT")))
 }
 

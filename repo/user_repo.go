@@ -16,22 +16,21 @@ type userRepo struct {
 	TableName string
 }
 
-var users []entity.User
-
-func NewUserRepo() UserRepo {
-	users = append(users, entity.User{
+var users = []entity.User{
+	{
 		Id: 1,
 		Username: "ihsan@gmail.com",
 		Password: "ihsan123",
-	})
-	users = append(users, entity.User{
+	},
+	{
 		Id: 2,
 		Username: "jill@gmail.com",
 		Password: "jill123",
-	})
+	}}
 
+func NewUserRepo() UserRepo {
 	return &userRepo{
-		DB: warehouse.DB,
+		DB: warehouse.Conn.DB,
 		TableName: "users"}
 }
 

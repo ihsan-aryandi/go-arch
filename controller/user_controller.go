@@ -3,7 +3,6 @@ package controller
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"gofw/service"
 	"net/http"
 	"strconv"
 )
@@ -14,10 +13,6 @@ type UserController interface {
 }
 
 type userController struct {}
-
-var (
-	userService = service.NewUserService()
-)
 
 func NewUserController() UserController {
 	return &userController{}

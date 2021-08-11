@@ -2,19 +2,19 @@ package router
 
 import (
 	"github.com/gorilla/mux"
-	"gofw/route"
+	"gofw/router/route"
 )
 
-func RegisterRoutes(r *mux.Router) {
+func SetupRoutes(r *mux.Router) {
 	/*
-		Routes Registration
+		Routes Setup
 	*/
-	route.RegisterUserRoutes(r)
-	route.RegisterContactRoutes(r)
+	route.SetupUser(r)
+	route.SetupContact(r)
 
 
 	/*
-		Global Middleware Registration
+		Global Middleware Setup
 	*/
 	r.Use()
 }

@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func RegisterContactRoutes(r *mux.Router) {
+func SetupContact(r *mux.Router) {
 	r.HandleFunc("/contact", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte("Contact Page"))
 	}).Methods("GET")
