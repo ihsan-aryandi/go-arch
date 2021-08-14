@@ -6,27 +6,15 @@ import (
 	"log"
 )
 
-/*
-	Database interface
-*/
-type Database interface {
-	/*
-		OpenConnection is to make a new connection to database
-	*/
-	OpenConnection(driverName, dsn string) (*sql.DB, error)
-
-	/*
-		CloseConnection is to close a specific database connection
-	*/
-	CloseConnection(db *sql.DB)
-}
-
 type database struct {}
 
-func NewDatabase() Database {
+func NewDatabase() *database {
 	return &database{}
 }
 
+/*
+	OpenConnection is to make a new connection to database
+*/
 func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 	db, err := sql.Open(driverName, dsn)
 	if err != nil {
@@ -41,6 +29,9 @@ func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 	return db, nil
 }
 
+/*
+	CloseConnection is to close a specific database connection
+*/
 func (*database) CloseConnection(db *sql.DB) {
 	err := db.Close()
 	if err != nil {
