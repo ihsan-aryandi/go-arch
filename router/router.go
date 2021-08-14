@@ -9,9 +9,7 @@ func SetupRoutes(r *mux.Router) {
 	/*
 		Routes Setup
 	*/
-	route.SetupUser(r)
-	route.SetupContact(r)
-
+	route.SetupExampleRoute(r)
 
 	/*
 		Global Middleware Setup

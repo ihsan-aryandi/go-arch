@@ -6,12 +6,7 @@ import (
 	"gofw/warehouse"
 )
 
-type UserRepo interface {
-	FindAll() []entity.User
-	FindById(id int64) (entity.User, bool)
-}
-
-type userRepo struct {
+type exampleRepo struct {
 	DB        *sql.DB
 	TableName string
 }
@@ -28,17 +23,17 @@ var users = []entity.User{
 		Password: "jill123",
 	}}
 
-func NewUserRepo() UserRepo {
-	return &userRepo{
+func NewExampleRepo() *exampleRepo {
+	return &exampleRepo{
 		DB: warehouse.Conn.DB,
 		TableName: "users"}
 }
 
-func (ur *userRepo) FindAll() (users []entity.User) {
+func (ur *exampleRepo) FindAll() []entity.User {
 	return users
 }
 
-func (ur *userRepo) FindById(id int64) (user entity.User, isFound bool) {
+func (ur *exampleRepo) FindById(id int64) (user entity.User, isFound bool) {
 	for _, item := range users {
 		if item.Id == id {
 			user = item

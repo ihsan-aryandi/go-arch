@@ -7,19 +7,14 @@ import (
 	"strconv"
 )
 
-type UserController interface {
-	FindAllUsers(w http.ResponseWriter, r *http.Request)
-	FindUserById(w http.ResponseWriter, r *http.Request)
+type exampleController struct {}
+
+func NewExampleController() *exampleController {
+	return &exampleController{}
 }
 
-type userController struct {}
-
-func NewUserController() UserController {
-	return &userController{}
-}
-
-func (uc *userController) FindAllUsers(w http.ResponseWriter, r *http.Request) {
-	users := userService.FindAllUsers()
+func (uc *exampleController) FindAllUsers(w http.ResponseWriter, r *http.Request) {
+	users := exampleService.FindAllUsers()
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
@@ -27,7 +22,7 @@ func (uc *userController) FindAllUsers(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(users)
 }
 
-func (uc *userController) FindUserById(w http.ResponseWriter, r *http.Request) {
+func (uc *exampleController) FindUserById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 
@@ -40,7 +35,7 @@ func (uc *userController) FindUserById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, isFound := userService.FindUserById(int64(id))
+	user, isFound := exampleService.FindUserById(int64(id))
 	if !isFound {
 		_ = json.NewEncoder(w).Encode(nil)
 		return
