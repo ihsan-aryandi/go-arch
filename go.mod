@@ -1,4 +1,4 @@
-module gofw
+module go-arch
 
 go 1.15
 

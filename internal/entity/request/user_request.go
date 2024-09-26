@@ -1,4 +1,4 @@
-package entity
+package request
 
 type User struct {
 	Id       int64  `json:"id"`

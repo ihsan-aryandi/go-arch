@@ -1,4 +1,4 @@
-package database
+package db
 
 import (
 	"database/sql"
@@ -6,14 +6,14 @@ import (
 	"log"
 )
 
-type database struct {}
+type database struct{}
 
 func NewDatabase() *database {
 	return &database{}
 }
 
 /*
-	OpenConnection is to make a new connection to database
+OpenConnection is to make a new connection to db
 */
 func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 	db, err := sql.Open(driverName, dsn)
@@ -30,7 +30,7 @@ func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 }
 
 /*
-	CloseConnection is to close a specific database connection
+CloseConnection is to close a specific db connection
 */
 func (*database) CloseConnection(db *sql.DB) {
 	err := db.Close()

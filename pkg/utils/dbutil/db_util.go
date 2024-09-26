@@ -1,4 +1,4 @@
-package util
+package dbutil
 
 import (
 	"fmt"
@@ -9,9 +9,6 @@ type dsnCreator struct {
 	dsn []string
 }
 
-/*
-	CreateDSN is user for creating data source name string
-*/
 func NewDSNCreator() *dsnCreator {
 	return &dsnCreator{}
 }
