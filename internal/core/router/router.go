@@ -2,14 +2,15 @@ package router
 
 import (
 	"github.com/gorilla/mux"
-	"go-arch/internal/route"
 	"net/http"
 )
 
-func SetupRouter(port string) error {
+type RouteHandler func(r *mux.Router)
+
+func SetupRouter(port string, routes RouteHandler) error {
 	r := mux.NewRouter()
 
-	route.RegisterRoutes(r)
+	routes(r)
 
 	return http.ListenAndServe(port, r)
 }

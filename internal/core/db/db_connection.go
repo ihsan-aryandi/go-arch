@@ -6,16 +6,14 @@ import (
 	"log"
 )
 
-type database struct{}
+type Instance struct{}
 
-func NewDatabase() *database {
-	return &database{}
+func NewDatabase() *Instance {
+	return &Instance{}
 }
 
-/*
-OpenConnection is to make a new connection to db
-*/
-func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
+// OpenConnection created new connection
+func (*Instance) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 	db, err := sql.Open(driverName, dsn)
 	if err != nil {
 		return nil, err
@@ -29,10 +27,8 @@ func (*database) OpenConnection(driverName, dsn string) (*sql.DB, error) {
 	return db, nil
 }
 
-/*
-CloseConnection is to close a specific db connection
-*/
-func (*database) CloseConnection(db *sql.DB) {
+// CloseConnection closes current connection
+func (*Instance) CloseConnection(db *sql.DB) {
 	err := db.Close()
 	if err != nil {
 		log.Fatal(err)
