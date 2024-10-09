@@ -1,27 +1,34 @@
 package provider
 
-import "go-arch/internal/app/handler"
+import (
+	"go-arch/internal/app/handler"
+	"go.uber.org/fx"
+)
 
-type Modules struct {
+type Handlers struct {
 	UserHandler *handler.UserHandler
 }
 
-func NewProvider(db string) *Modules {
-	return &Modules{
-		UserHandler: userHandlerProvider(db),
-	}
+func Modules(option fx.Option) fx.Option {
+	return fx.Options(
+		option,
+
+		// Your dependencies go here
+		userProviders(),
+
+		// Register handlers
+		fx.Provide(registerHandlers()),
+	)
 }
 
-//func NewProvider() *fx.App {
-//	return fx.New(
-//		/*
-//			User
-//		*/
-//		fx.Provide(
-//			"database",
-//			repository.NewUserRepository,
-//			userservice.NewUserService,
-//			handler.NewUserHandler,
-//		),
-//	)
-//}
+func registerHandlers() interface{} {
+	return func(
+		userHandler *handler.UserHandler,
+	) *Handlers {
+
+		// Register your handlers
+		return &Handlers{
+			UserHandler: userHandler,
+		}
+	}
+}

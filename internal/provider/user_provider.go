@@ -4,11 +4,15 @@ import (
 	"go-arch/internal/app/handler"
 	"go-arch/internal/app/repository"
 	"go-arch/internal/app/service/userservice"
+	"go.uber.org/fx"
 )
 
-func userHandlerProvider(db string) *handler.UserHandler {
-	userRepo := repository.NewUserRepository(db)
-	userSvc := userservice.NewUserService(userRepo)
-
-	return handler.NewUserHandler(userSvc)
+func userProviders() fx.Option {
+	return fx.Options(
+		fx.Provide(
+			repository.NewUserRepository,
+			userservice.NewUserService,
+			handler.NewUserHandler,
+		),
+	)
 }

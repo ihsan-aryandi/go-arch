@@ -8,7 +8,7 @@ func LoadConfig() *Conf {
 			Version: getEnv("APP_VERSION", "0.0.1"),
 		},
 		HTTP: &HTTPConfig{
-			Port: getEnv("PORT", "8000"),
+			Port: getEnv("HTTP_PORT", "8000"),
 		},
 	}
 }
